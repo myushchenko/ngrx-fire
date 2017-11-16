@@ -12,6 +12,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { simpleReducer } from './simple.reducer';
 import { postReducer } from './reducers/post.reducer';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { environment } from '../environments/environment';
 
 @NgModule({
 	declarations: [
@@ -28,7 +31,9 @@ import { postReducer } from './reducers/post.reducer';
 		}),
 		StoreDevtoolsModule.instrument({
 			maxAge: 10 // number of states to retain
-		})
+		}),
+		AngularFirestoreModule,
+		AngularFireModule.initializeApp(environment.firebaseConfig)
 	],
 	providers: [],
 	bootstrap: [AppComponent]
