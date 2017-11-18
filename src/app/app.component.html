@@ -1,18 +1,11 @@
-<!--The content below is only a placeholder and can be replaced.-->
-
-<h2>{{ message$ | async }}</h2>
-
-<button (click)="spanishMessage()">Spanish</button>
-<button (click)="frenchMessage()">French</button>
-
-<div *ngIf="post | async as p">
-  <h2>{{ p.text }}</h2>
-  <h4>Votes: {{ p.likes }}</h4>
-  <button (click)="upvote()">Upvote</button>
-  <button (click)="downvote()">Downvote</button>
-  <button (click)="resetPost()">Reset</button>
-  <input [(ngModel)]="text">
-  <button (click)="editText()" >Change Title</button>
+<div *ngIf="post$ | async as post">
+	<i *ngIf="post.loading" class="fa fa-spin fa-refresh"></i>
+	<h2>{{ post.text }}</h2>
+	<h4>Votes: {{ post.votes }}</h4>
+	<button (click)="vote(post, 1)">Upvote</button>
+	<button (click)="vote(post, -1)">Downvote</button>
 </div>
+<br>
+<button (click)="getPost()">Load Post from Firebase</button>
 
 <router-outlet></router-outlet>

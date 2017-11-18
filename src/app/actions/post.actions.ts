@@ -1,33 +1,44 @@
 import { Action } from '@ngrx/store';
+import { Post } from '../models/post.model';
 
-export const EDIT_TEXT = '[Post] Edit';
+export const GET_POST = 'Post get';
 
-export const UPVOTE = '[Post] Upvote';
+export const GET_POST_SUCCESS = 'Post get success';
 
-export const DOWNVOTE = '[Post] Downvote';
+export const VOTE_UPDATE = 'Post Vote';
 
-export const RESET = '[Post] Reset';
+export const VOTE_SUCCESS = 'Post Vote success';
 
-export class EditText implements Action {
-	readonly type = EDIT_TEXT;
-	/// user a constructor to send a payload with the action
+export const VOTE_FAIL = 'Post Vote fail';
+
+export class GetPost implements Action {
+	readonly type = GET_POST;
 	constructor(public payload: string) { }
 }
 
-export class Upvote implements Action {
-	readonly type = UPVOTE;
+export class GetPostSuccess implements Action {
+	readonly type = GET_POST_SUCCESS;
+	constructor(public payload: Post) { }
 }
 
-export class Downvote implements Action {
-	readonly type = DOWNVOTE;
+export class VoteUpdate implements Action {
+	readonly type = VOTE_UPDATE;
+	constructor(public payload: any) { }
 }
 
-export class Reset implements Action {
-	readonly type = RESET;
+export class VoteSuccess implements Action {
+	readonly type = VOTE_SUCCESS;
+	constructor(public payload?: any) { }
+}
+
+export class VoteFail implements Action {
+	readonly type = VOTE_FAIL;
+	constructor(public payload?: any) { }
 }
 
 export type All
-	= Upvote
-	| Downvote
-	| Reset
-	| EditText;
+	= GetPost
+	| GetPostSuccess
+	| VoteUpdate
+	| VoteSuccess
+	| VoteFail;
