@@ -1,6 +1,5 @@
 export interface Post {
-	$key: string;
-	loading: boolean;
+	id: string;
 	text: string;
 	votes: number;
 	error?: string;

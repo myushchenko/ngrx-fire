@@ -1,0 +1,41 @@
+<!-- <div *ngFor="let post of post$ | async ">
+  <h2>{{ post.text }}</h2>
+	<h4>Votes: {{ post.votes }}</h4>
+	<button class="button is-success" (click)="vote(post, 1)">Upvote</button>
+	<button class="button is-warning" (click)="vote(post, -1)">Downvote</button>
+</div> -->
+
+<div *ngIf="post$ | async as posts; else loading;">
+	{{postList|json}}
+	<div *ngFor="let post of posts">
+		<h2>{{ post.text }}</h2>
+		<h4>Votes: {{ post.votes }}</h4>
+		<button class="button is-success" (click)="vote(post, 1)">Upvote</button>
+		<button class="button is-warning" (click)="vote(post, -1)">Downvote</button>
+		<button class="button is-danger" (click)="delete(post.id)">Remove</button>
+	</div>
+</div>
+
+<!-- <div *ngIf="post$ | async as post">
+	<i *ngIf="post.loading" class="fa fa-spin fa-refresh"></i>
+	<h2>{{ post.text }}</h2>
+	<h4>Votes: {{ post.votes }}</h4>
+	<button class="button is-success" (click)="vote(post, 1)">Upvote</button>
+	<button class="button is-warning" (click)="vote(post, -1)">Downvote</button>
+</div> -->
+
+<ng-template #loading>
+	<i class="fa fa-spin fa-refresh"></i>
+</ng-template>
+
+<!-- <div *ngIf="post$ | async as post">
+	<i *ngIf="post.loading" class="fa fa-spin fa-refresh"></i>
+	<h2>{{ post.text }}</h2>
+	<h4>Votes: {{ post.votes }}</h4>
+	<button class="button is-success" (click)="vote(post, 1)">Upvote</button>
+	<button class="button is-warning" (click)="vote(post, -1)">Downvote</button>
+</div> -->
+<br>
+
+<br>
+<post-add></post-add>

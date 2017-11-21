@@ -1,11 +1,7 @@
-<div *ngIf="post$ | async as post">
-	<i *ngIf="post.loading" class="fa fa-spin fa-refresh"></i>
-	<h2>{{ post.text }}</h2>
-	<h4>Votes: {{ post.votes }}</h4>
-	<button (click)="vote(post, 1)">Upvote</button>
-	<button (click)="vote(post, -1)">Downvote</button>
+<div class="content columns">
+	<div class="column is-8 is-offset-2">
+		<post-list></post-list>
+	</div>
 </div>
-<br>
-<button (click)="getPost()">Load Post from Firebase</button>
 
 <router-outlet></router-outlet>
