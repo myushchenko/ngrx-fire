@@ -4,7 +4,8 @@ import { Post } from '../post.model';
 import { Store } from '@ngrx/store';
 import * as actions from '../post.actions';
 import * as fromPost from '../post.reducer';
-
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { PostAddComponent } from '../post-add/post-add.component';
 
 @Component({
 	selector: 'post-list',
@@ -13,14 +14,14 @@ import * as fromPost from '../post.reducer';
 })
 export class PostListComponent implements OnInit {
 	post$: Observable<any>;
+	createPostDialogRef: MatDialogRef<PostAddComponent>;
 
-	constructor(private store: Store<fromPost.AppState>) {
-		//this.post$ = this.store.select('post');
+	constructor(private store: Store<fromPost.AppState>, private dialog: MatDialog) {
 		this.post$ = this.store.select(fromPost.selectAll);
+	}
 
-		this.post$.subscribe(v => {
-			console.log('v', v)
-		})
+	ngOnInit() {
+		this.store.dispatch(new actions.GetAllPost());
 	}
 
 	vote(post: Post, val: number) {
@@ -32,8 +33,10 @@ export class PostListComponent implements OnInit {
 		this.store.dispatch(new actions.DeletePost(id));
 	}
 
-	ngOnInit() {
-		this.store.dispatch(new actions.GetAllPost());
+	addPostDialog() {
+		this.createPostDialogRef = this.dialog.open(PostAddComponent, {
+			hasBackdrop: false
+		});
 	}
 
 }

@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -22,8 +23,7 @@ import { PostModule } from './post/post.module';
 		//Core modules
 		BrowserModule,
 		AppRoutingModule,
-		FormsModule,
-		ReactiveFormsModule,
+		BrowserAnimationsModule,
 		//NGRX
 		StoreModule.forRoot(reducers),
 		StoreDevtoolsModule.instrument({
