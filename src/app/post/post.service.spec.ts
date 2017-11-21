@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { PostFirebaseService } from './post-firebase.service';
+import { PostFirebaseService } from './post.service';
 
 describe('PostFirebaseService', () => {
   beforeEach(() => {
