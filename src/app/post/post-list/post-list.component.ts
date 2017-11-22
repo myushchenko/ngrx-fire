@@ -14,10 +14,12 @@ import { PostAddComponent } from '../post-add/post-add.component';
 })
 export class PostListComponent implements OnInit {
 	post$: Observable<any>;
+	postCpount$: Observable<number>;
 	createPostDialogRef: MatDialogRef<PostAddComponent>;
 
 	constructor(private store: Store<fromPost.AppState>, private dialog: MatDialog) {
 		this.post$ = this.store.select(fromPost.selectAll);
+		this.postCpount$ = this.store.select(fromPost.selectTotal);
 	}
 
 	ngOnInit() {
@@ -35,7 +37,8 @@ export class PostListComponent implements OnInit {
 
 	addPostDialog() {
 		this.createPostDialogRef = this.dialog.open(PostAddComponent, {
-			hasBackdrop: false
+			hasBackdrop: true,
+			disableClose: true
 		});
 	}
 
