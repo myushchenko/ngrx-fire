@@ -17,10 +17,10 @@ export type Action = actions.All;
 export class PostEffects {
 	constructor(private actions$: Actions, private service: PostService) { }
 
-	// Listen for the 'QUERY' action, must be the first effect you trigger
-	@Effect() query$: Observable<Action> = this.actions$.ofType(actions.GET_ALL_POST)
+	// Listen for the 'GET_ALL' action, must be the first effect you trigger
+	@Effect() query$: Observable<Action> = this.actions$.ofType(actions.GET_ALL)
 		.switchMap(action => this.service.getAll())
-		.map(arr => new actions.GetAllPostSuccess(arr))
+		.map(arr => new actions.GetAllSuccess(arr))
 
 	// Listen for the 'CREATE' action
 	@Effect() create$: Observable<Action> = this.actions$.ofType(actions.CREATE)
@@ -29,14 +29,14 @@ export class PostEffects {
 		.map(() => new actions.Success())
 
 	// Listen for the 'UPDATE' action
-	@Effect() update$: Observable<Action> = this.actions$.ofType(actions.VOTE_UPDATE)
-		.map((action: actions.VoteUpdate) => action)
+	@Effect() update$: Observable<Action> = this.actions$.ofType(actions.UPDATE)
+		.map((action: actions.Update) => action)
 		.switchMap(data => this.service.update(data))
 		.map(() => new actions.Success())
 
 	// Listen for the 'DELETE' action
-	@Effect() delete$: Observable<Action> = this.actions$.ofType(actions.DELETE_POST)
-		.map((action: actions.DeletePost) => action.id)
+	@Effect() delete$: Observable<Action> = this.actions$.ofType(actions.DELETE)
+		.map((action: actions.Delete) => action.id)
 		.switchMap(id => this.service.delete(id))
 		.map(() => new actions.Success())
 }

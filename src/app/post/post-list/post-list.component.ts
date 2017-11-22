@@ -21,16 +21,16 @@ export class PostListComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.store.dispatch(new actions.GetAllPost());
+		this.store.dispatch(new actions.GetAll());
 	}
 
 	vote(post: Post, val: number) {
 		post.votes += val
-		this.store.dispatch(new actions.VoteUpdate(post.id, post));
+		this.store.dispatch(new actions.Update(post.id, post));
 	}
 
 	delete(id: string) {
-		this.store.dispatch(new actions.DeletePost(id));
+		this.store.dispatch(new actions.Delete(id));
 	}
 
 	addPostDialog() {
